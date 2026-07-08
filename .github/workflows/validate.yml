@@ -41,17 +41,12 @@ jobs:
 
       - name: Restore
         working-directory: gma-module-tenancy
-        run: dotnet restore 
-Gma.Modules.Tenancy.slnx
+        run: dotnet restore Gma.Modules.Tenancy.slnx
 
       - name: Build
         working-directory: gma-module-tenancy
-        run: dotnet build 
-Gma.Modules.Tenancy.slnx
- --no-restore -m:1
+        run: dotnet build Gma.Modules.Tenancy.slnx --no-restore -m:1
 
       - name: Test
         working-directory: gma-module-tenancy
-        run: dotnet test 
-Gma.Modules.Tenancy.slnx
- --no-build --logger "console;verbosity=minimal"
+        run: dotnet test Gma.Modules.Tenancy.slnx --no-build --logger "console;verbosity=minimal"
