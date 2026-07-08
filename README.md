@@ -2,7 +2,7 @@
 
 This repository owns the optional GMA Tenancy module front door for applications that enable tenant resolution and tenant endpoint behavior.
 
-It is consumed by source-first applications and by the `gma-skeleton` composition repository as a Git submodule under `gma/modules/tenancy`.
+It is consumed by source-first applications and by the `GMA-Skeleton` composition repository as a Git submodule under `gma/modules/tenancy`.
 
 Useful entry points:
 
