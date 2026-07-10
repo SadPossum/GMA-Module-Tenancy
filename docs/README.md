@@ -17,7 +17,7 @@ When Tenancy is enabled:
 - tenant id is resolved from `X-Tenant-Id`;
 - tenant-scoped endpoints require a tenant id;
 - tenant context is available through `ITenantContext`;
-- tenant-owned models implement `ITenantScoped`, usually through `TenantAggregateRoot<TId>` or `TenantEntity<TId>`.
+- tenant-owned models implement `IScopedEntity`, usually through `ScopedAggregateRoot<TId>` or `ScopedEntity<TId>`.
 
 When Tenancy is not registered:
 
@@ -68,9 +68,9 @@ This applies the tenant endpoint filter from `Gma.Framework.Api`.
 
 Tenant-scoped entities should implement tenant-scoped behavior consistently:
 
-- store a normalized `TenantId` through `TenantAggregateRoot<TId>`, `TenantEntity<TId>`, or an explicit `ITenantScoped` implementation;
-- use `TenantAwareDbContext<TContext>` and `ApplyTenantConventions(modelBuilder)` for EF tenant property configuration and the named `TenantFilter`;
-- rely on the shared write guard to reject invalid, unnormalized, or mismatched tenant ids before `SaveChanges`;
+- store a normalized `ScopeId` through `ScopedAggregateRoot<TId>`, `ScopedEntity<TId>`, or an explicit `IScopedEntity` implementation;
+- use `ScopeAwareDbContext<TContext>` and `ApplyScopeConventions(modelBuilder)` for EF scope property configuration and the named `ScopeFilter`;
+- rely on the shared write guard to reject invalid, unnormalized, or mismatched scope ids before `SaveChanges`;
 - avoid bypassing filters without a specific reason;
 - include tenant id in unique indexes where uniqueness is tenant-local.
 
