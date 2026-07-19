@@ -34,7 +34,8 @@ public sealed class TenancyModule : IModule
             .WithTags("Tenancy");
 
         group.MapGet("/current", (ITenantContext tenantContext) =>
-            Results.Ok(new { tenantContext.TenantId, tenantContext.IsEnabled }))
+            Results.Ok(new CurrentTenantResponse(tenantContext.TenantId!, tenantContext.IsEnabled)))
+            .Produces<CurrentTenantResponse>(StatusCodes.Status200OK)
             .RequireTenant();
     }
 }

@@ -1,9 +1,11 @@
 <Solution>
   <Folder Name="/docs/">
     <File Path="docs/README.md" />
+    <File Path="docs/tenancy-contract-verification-task.md" />
   </Folder>
   <Folder Name="/eng/">
     <File Path="eng/bootstrap-source-roots.ps1" />
+    <File Path="eng/check-boundaries.ps1" />
   </Folder>
   <Folder Name="/.github/workflows/">
     <File Path=".github/workflows/validate.yml" />
@@ -25,5 +27,8 @@
   </Folder>
   <Folder Name="/src/Contracts/">
     <Project Path="src/Gma.Modules.Tenancy.Contracts/Gma.Modules.Tenancy.Contracts.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Gma.Modules.Tenancy.Tests/Gma.Modules.Tenancy.Tests.csproj" />
   </Folder>
 </Solution>

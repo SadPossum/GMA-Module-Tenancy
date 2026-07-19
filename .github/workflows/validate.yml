@@ -13,7 +13,13 @@ permissions:
 
 jobs:
   validate:
-    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout module
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -50,6 +56,15 @@ jobs:
         working-directory: gma-module-tenancy
         run: dotnet build Gma.Modules.Tenancy.slnx --no-restore -m:1
 
+      - name: Check boundaries
+        shell: pwsh
+        working-directory: gma-module-tenancy
+        run: ./eng/check-boundaries.ps1
+
       - name: Test
         working-directory: gma-module-tenancy
         run: dotnet test Gma.Modules.Tenancy.slnx --no-build --logger "console;verbosity=minimal"
+
+      - name: Audit packages
+        working-directory: gma-module-tenancy
+        run: dotnet list Gma.Modules.Tenancy.slnx package --vulnerable --include-transitive

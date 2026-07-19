@@ -38,7 +38,13 @@ Endpoint:
 GET /current
 ```
 
-This returns the current tenant id and whether tenancy is enabled.
+This returns `CurrentTenantResponse`, containing the current tenant id and whether tenancy is enabled.
+
+## Trust Boundary
+
+`RequireTenant()` resolves and validates tenant context. It does not authenticate a caller by itself. Applications must also compose their authorization policy or register an `ITenantEndpointAccessPolicy`, such as the Organizations + Tenancy extension, before tenant-selected endpoints access protected data.
+
+Use `RequireTenantWithIndependentAuthentication()` only for endpoints that authenticate the caller themselves before performing protected work.
 
 ## Configuration
 
@@ -83,6 +89,8 @@ Any module with tenant-scoped data should prove:
 - tenant A cannot see tenant B data;
 - tenant A tokens cannot refresh or mutate tenant B sessions;
 - missing tenant id is rejected where tenancy is required.
+
+This repository directly verifies module registration, scoped context isolation, header resolution, invalid input, access-policy denial, and the current-tenant response contract on Windows and Linux.
 
 ## Future Options
 
