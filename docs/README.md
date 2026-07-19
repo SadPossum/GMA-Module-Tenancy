@@ -2,6 +2,8 @@
 
 The Tenancy module enables tenant resolution for projects that need tenant isolation. It is optional and explicitly registered by `Host.Api`.
 
+Implementation direction and acceptance criteria are tracked in the [Tenancy Contract Verification Task](tenancy-contract-verification-task.md).
+
 ## Project
 
 ```text
