@@ -1,7 +1,8 @@
 # Tenancy Contract Verification Task
 
-Status: in progress
+Status: completed
 Date: 2026-07-19
+Completed: 2026-07-19
 
 ## Goal
 
@@ -36,3 +37,13 @@ Make the optional Tenancy front door independently verifiable without moving gen
 - source projects reference no other reusable module and contain no product-specific code;
 - standalone build, tests, boundary checks, and package audit pass on Windows and Ubuntu;
 - Skeleton and BunkFy pass against the exact published Tenancy head.
+
+## Completion Evidence
+
+- Tenancy `f087bff` passes its zero-warning build, 4 focused tests, reusable-module boundary guard, and package vulnerability audit; GitHub Actions run `29698674709` is green on Windows and Ubuntu.
+- Framework remains unchanged at `c62d4ee`, and GMA Extensions remains unchanged at `abed85e`; generic scoping and Organizations admission responsibilities did not move.
+- GMA Skeleton `d1116d0` passes the complete local verification gate, including all 264 architecture tests, and GitHub Actions run `29698896788` is green on Windows and Ubuntu.
+- BunkFy backend `f8ba3ef` passes the complete local verification gate; GitHub Actions validate run `29699490656` and Docker run `29699490670` are green.
+- BunkFy web `0b6f75e` contains only the regenerated OpenAPI snapshot and TypeScript contract for `CurrentTenantResponse`; GitHub Actions run `29700521031` is green.
+- BunkFy root `27b5cb3` includes the synchronized workspace solution and exact backend/web pins; clean-checkout GitHub Actions run `29700701789` is green.
+- The clean-checkout gate first exposed missing workspace-solution and generated-contract updates; both were corrected before this task was completed.
