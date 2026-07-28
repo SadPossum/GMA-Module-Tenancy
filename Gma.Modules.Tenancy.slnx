@@ -34,8 +34,10 @@
     <File Path="eng/check-repository-release.ps1" />
     <File Path="eng/check-repository-security.ps1" />
   </Folder>
-  <Folder Name="/src/">
+  <Folder Name="/src/Api/">
     <Project Path="src/Gma.Modules.Tenancy.Api/Gma.Modules.Tenancy.Api.csproj" />
+  </Folder>
+  <Folder Name="/src/Contracts/">
     <Project Path="src/Gma.Modules.Tenancy.Contracts/Gma.Modules.Tenancy.Contracts.csproj" />
   </Folder>
   <Folder Name="/tests/">
