@@ -3,6 +3,7 @@
 Status: completed
 Date: 2026-07-19
 Completed: 2026-07-19
+Updated: 2026-08-05
 
 ## Goal
 
@@ -47,3 +48,16 @@ Make the optional Tenancy front door independently verifiable without moving gen
 - BunkFy web `0b6f75e` contains only the regenerated OpenAPI snapshot and TypeScript contract for `CurrentTenantResponse`; GitHub Actions run `29700521031` is green.
 - BunkFy root `27b5cb3` includes the synchronized workspace solution and exact backend/web pins; clean-checkout GitHub Actions run `29700701789` is green.
 - The clean-checkout gate first exposed missing workspace-solution and generated-contract updates; both were corrected before this task was completed.
+
+## 2026-08-05 Revalidation
+
+- The synchronized Tenancy solution passes all 4 focused tests and its boundary,
+  repository-security, release-policy, and solution-sync guards against the
+  mounted Framework working tree.
+- The audit found no persistence, product policy, organization admission, or
+  authentication behavior that belongs in this deliberately small module.
+- A provider-parity issue in case-preserving scope comparisons was corrected in
+  Framework persistence conventions, with provider-owned SQL Server migrations
+  in Auth and Notifications and dual-provider relational proof in Auth.
+- Tenancy remains responsible only for the opt-in HTTP front door and current
+  tenant context; generic scope persistence remains Framework-owned.

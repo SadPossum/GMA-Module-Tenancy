@@ -60,7 +60,7 @@ Use `RequireTenantWithIndependentAuthentication()` only for endpoints that authe
 }
 ```
 
-`HeaderName` is validated as an HTTP header token and tenant ids are normalized by `TenantIds`: trimmed, non-empty, case-preserving, at most 128 characters, and without whitespace or control characters to match module persistence mappings. `LocalDefaultTenantId` follows the same rule and is used by the shared null tenant context when the optional Tenancy module is not registered.
+`HeaderName` is validated as an HTTP header token and tenant ids are normalized by `TenantIds`: trimmed, non-empty, case-preserving, at most 128 characters, and without whitespace or control characters to match module persistence mappings. Values that differ only by case remain distinct. Shared scope-aware EF conventions preserve that distinction on SQL Server with ordinal column storage, while PostgreSQL deterministic text equality is already case-sensitive. `LocalDefaultTenantId` follows the same rule and is used by the shared null tenant context when the optional Tenancy module is not registered.
 
 ## Endpoint Usage
 
@@ -89,6 +89,7 @@ Do not add runtime shadow `TenantId` properties to arbitrary EF models. The allo
 Any module with tenant-scoped data should prove:
 
 - tenant A cannot see tenant B data;
+- tenant ids differing only by case remain isolated on every supported provider;
 - tenant A tokens cannot refresh or mutate tenant B sessions;
 - missing tenant id is rejected where tenancy is required.
 
